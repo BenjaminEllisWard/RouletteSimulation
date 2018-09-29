@@ -10,6 +10,8 @@ namespace Roulette
     {
         static void Main(string[] args)
         {
+            Table table = new Table();
+            table.Run();
         }
     }
 }
