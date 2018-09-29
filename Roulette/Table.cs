@@ -22,21 +22,16 @@ namespace Roulette
             }
         }
 
-        public void NumsThrough36()
-        {
-
-        }
-
         public void EvenOrOdd(int number)
         {
-            Console.WriteLine("Even/Odd:");
+            string message = "Even/Odd: ";
             if (number % 2 == 0)
             {
                 for (int i = 0; i <= 35; i++)
                 {
                     if (Numbers[i] % 2 == 0)
                     {
-                        Console.WriteLine(Numbers[i]);
+                       message += $"{Numbers[i]}, ";
                     }
                 }
             }
@@ -47,16 +42,17 @@ namespace Roulette
                 {
                     if (Numbers[i] % 2 != 0)
                     {
-                        Console.WriteLine(Numbers[i]);
+                        message += $"{Numbers[i]}, ";
                     }
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length -2);
+            Console.WriteLine(message);
         }
 
         public void RedOrBlack(int number)
         {
-            Console.WriteLine("Red/Black");
+            string message = "Red/Black: ";
 
             bool isRed = false;
 
@@ -72,122 +68,99 @@ namespace Roulette
             {
                 for (int i = 0; i <= Black.Length - 1; i++)
                 {
-                    Console.WriteLine(Black[i]);
+                    message += $"{Black[i]}, ";
                 }
             }
             else
             {
                 for (int i = 0; i <= Red.Length - 1; i++)
                 {
-                    Console.WriteLine(Red[i]);
+                    message += $"{Red[i]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void LowOrHigh(int number)
         {
-            Console.WriteLine("Low/High:");
+            string message = "Low/High: ";
 
             int condition = (number - 1) / 18;
             for (int i = 0; i <= 35; i++)
             {
                 if ((Numbers[i] - 1) / 18 == condition)
                 {
-                    Console.WriteLine(Numbers[i]);
+                    message += $"{Numbers[i]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void Dozens(int number)
         {
-            Console.WriteLine("Dozens:");
+            string message = "Dozens: ";
 
             int condition = (number - 1) / 12;
             for (int i = 0; i <= 35; i++)
             {
                 if ((Numbers[i] - 1) / 12 == condition)
                 {
-                    Console.WriteLine(Numbers[i]);
+                    message += $"{Numbers[i]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void Column(int number)
         {
-            Console.WriteLine("Column:");
+            string message = "Column: ";
 
             int column = number % 3;
             for (int i = 0; i <= 35; i++)
             {
                 if (Numbers[i] % 3 == column)
                 {
-                    Console.WriteLine(Numbers[i]);
+                    message += $"{Numbers[i]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void Street(int number)
         {
-            Console.WriteLine("Street:");
+            string message = "Street: ";
 
             int street = (number - 1) / 3;
             for (int i = 0; i <= 35; i++)
             {
                 if ((Numbers[i] - 1) / 3 == street)
                 {
-                    Console.WriteLine(Numbers[i]);
+                    message += $"{Numbers[i]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void Split (int number)
         {
-            Console.WriteLine("Split");
+            string message = "Split: ";
             int column = (number) % 3;
             
             if (column == 1)
             {
-                Console.WriteLine(Numbers[number - 1] - 3);
-                Console.WriteLine(Numbers[number - 1] + 3);
-                Console.WriteLine(Numbers[number - 1] + 1);
-            }                                   
-                                                
-            if (column == 2)                  
-            {                                   
-                Console.WriteLine(Numbers[number - 1] - 3);
-                Console.WriteLine(Numbers[number - 1] + 3);
-                Console.WriteLine(Numbers[number - 1] + 1);
-                Console.WriteLine(Numbers[number - 1] - 1);
-            }                                    
-                                                 
-            if (column == 0)                   
-            {                                    
-                Console.WriteLine(Numbers[number - 1] - 3);
-                Console.WriteLine(Numbers[number - 1] + 3);
-                Console.WriteLine(Numbers[number - 1] - 1);
-            }
-            Console.WriteLine();
-        }
-
-        public void Corner(int number)
-        {
-            Console.WriteLine("Corner");
-            int column = (number) % 3;
-
-            if (column == 1)
-            {
                 if (number > 3)
                 {
-                    Console.WriteLine($"{Numbers[number - 4]}/{Numbers[number - 3]}/{Numbers[number - 1]}/{Numbers[number]}");
+                    message += $"{Numbers[number - 1] - 3}/{number}, ";
                 }
+                message += $"{number}/{Numbers[number - 1] + 1}, ";
                 if (number < 34)
                 {
-                    Console.WriteLine($"{Numbers[number - 1]}/{Numbers[number]}/{Numbers[number + 2]}/{Numbers[number + 3]}");
+                    message += $"{number}/{Numbers[number - 1] + 3}, ";
                 }
             }
 
@@ -195,13 +168,60 @@ namespace Roulette
             {
                 if (number > 3)
                 {
-                    Console.WriteLine($"{Numbers[number - 5]}/{Numbers[number - 4]}/{Numbers[number - 2]}/{Numbers[number - 1]}");
-                    Console.WriteLine($"{Numbers[number - 4]}/{Numbers[number - 3]}/{Numbers[number - 1]}/{Numbers[number]}");
+                    message += $"{Numbers[number - 1] - 3}/{number}, ";
+                }
+                message += $"{Numbers[number - 1] - 1}/{number}, ";
+                message += $"{number}/{Numbers[number - 1] + 1}, ";
+                if (number < 34)
+                {
+                    message += $"{number}/{Numbers[number - 1] + 3}, ";
+                }
+            }                                    
+                                                 
+            if (column == 0)                   
+            {
+                if (number > 3)
+                {
+                    message += $"{Numbers[number - 1] - 3}/{number}, ";
+                }
+                message += $"{Numbers[number - 1] - 1}/{number}, ";
+                if (number < 34)
+                {
+                    message += $"{number}/{Numbers[number - 1] + 3}, ";
+                }
+            }
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
+        }
+
+        public void Corner(int number)
+        {
+            string message = "Corner: ";
+            int column = (number) % 3;
+
+            if (column == 1)
+            {
+                if (number > 3)
+                {
+                    message += $"{Numbers[number - 4]}/{Numbers[number - 3]}/{Numbers[number - 1]}/{Numbers[number]}, ";
                 }
                 if (number < 34)
                 {
-                    Console.WriteLine($"{Numbers[number - 2]}/{Numbers[number - 1]}/{Numbers[number + 1]}/{Numbers[number + 2]}");
-                    Console.WriteLine($"{Numbers[number - 1]}/{Numbers[number]}/{Numbers[number + 2]}/{Numbers[number + 3]}");
+                    message += $"{Numbers[number - 1]}/{Numbers[number]}/{Numbers[number + 2]}/{Numbers[number + 3]}, ";
+                }
+            }
+
+            if (column == 2)
+            {
+                if (number > 3)
+                {
+                    message += $"{Numbers[number - 5]}/{Numbers[number - 4]}/{Numbers[number - 2]}/{Numbers[number - 1]}, ";
+                    message += $"{Numbers[number - 4]}/{Numbers[number - 3]}/{Numbers[number - 1]}/{Numbers[number]}, ";
+                }
+                if (number < 34)
+                {
+                    message += $"{Numbers[number - 2]}/{Numbers[number - 1]}/{Numbers[number + 1]}/{Numbers[number + 2]}, ";
+                    message += $"{Numbers[number - 1]}/{Numbers[number]}/{Numbers[number + 2]}/{Numbers[number + 3]}, ";
                 }
             }
 
@@ -209,26 +229,29 @@ namespace Roulette
             {
                 if (number > 3)
                 {
-                    Console.WriteLine($"{Numbers[number - 5]}/{Numbers[number - 4]}/{Numbers[number - 2]}/{Numbers[number - 1]}");
+                    message += $"{Numbers[number - 5]}/{Numbers[number - 4]}/{Numbers[number - 2]}/{Numbers[number - 1]}, ";
                 }
                 if (number < 34)
                 {
-                    Console.WriteLine($"{Numbers[number - 2]}/{Numbers[number - 1]}/{Numbers[number + 1]}/{Numbers[number + 2]}");
+                    message += $"{Numbers[number - 2]}/{Numbers[number - 1]}/{Numbers[number + 1]}/{Numbers[number + 2]}, ";
                 }
             }
-            Console.WriteLine();
+            message = message.Substring(0, message.Length - 2);
+            Console.WriteLine(message);
         }
 
         public void Run()
         {
             Random rnd = new Random();
             int number = rnd.Next(1, 38);
+            number = 36;
 
             
 
             if (number < 37)
             {
                 Console.WriteLine($"Winning number: {number}");
+                Console.WriteLine();
                 Assign();
                 EvenOrOdd(number);
                 RedOrBlack(number);
