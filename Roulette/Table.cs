@@ -15,7 +15,8 @@ namespace Roulette
         int[] Red = new int[] { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
         int[] Black = new int[] { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
 
-        // assigns incrementing int values to bins in a roulette table
+        // Assigns incrementing int values to bins in a roulette table. Note that throughout rest of
+        // file, indice values are one less than element values.
         public void Assign()
         {
             int value = 1;
